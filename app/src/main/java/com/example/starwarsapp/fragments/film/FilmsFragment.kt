@@ -1,6 +1,7 @@
 package com.example.starwarsapp.fragments.film
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -46,7 +47,9 @@ class FilmsFragment : Fragment(R.layout.films_fragment) {
         updateRv(films)
         adapter.setOnClickListener(object : FilmsRvAdapter.OnItemClickListener {
             override fun onItemClick(position: Int) {
-                findNavController().navigate(R.id.action_filmsFragment_to_characterFragment)
+                val charactersList = adapter.getFilmByPosition(position).characters
+                val action = FilmsFragmentDirections.actionFilmsFragmentToCharacterFragment(charactersList.toTypedArray())
+                findNavController().navigate(action)
             }
         })
     }

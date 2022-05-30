@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingRight="16dp"
+    android:paddingLeft="16dp"
+    android:paddingBottom="16dp">
+
+    <TextView
+        android:id="@+id/characterNameTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:gravity="center"
+        tools:text="name" />
+
+    <TextView
+        android:id="@+id/bithDateTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/characterNameTv"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/sexTv"
+        tools:text="12.04.2022" />
+
+    <TextView
+        android:id="@+id/sexTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:layout_below="@id/characterNameTv"
+        android:layout_alignParentEnd="true"
+        tools:text="male" />
+
+</RelativeLayout>

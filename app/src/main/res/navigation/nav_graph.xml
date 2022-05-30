@@ -12,7 +12,7 @@
         tools:layout="@layout/films_fragment" >
         <action
             android:id="@+id/action_filmsFragment_to_characterFragment"
-            app:destination="@id/characterFragment" />
+            app:destination="@id/characterFragment"/>
     </fragment>
     <fragment
         android:id="@+id/characterFragment"
@@ -22,5 +22,8 @@
         <action
             android:id="@+id/action_characterFragment_to_filmsFragment"
             app:destination="@id/filmsFragment" />
+        <argument
+            android:name="charactersInFilm"
+            app:argType="string[]" />
     </fragment>
 </navigation>

@@ -10,8 +10,11 @@ class ApiRepository : ApiServices {
     override suspend fun getCharacters() =
         Common.apiServices.getCharacters()
 
-    override suspend fun getCharacterById(id: Int) =
-        Common.apiServices.getCharacterById(id)
+    override suspend fun getCharactersById(id: Int) =
+        Common.apiServices.getCharactersById(id)
+
+    override suspend fun getCharactersByUrl(url: String) =
+        Common.apiServices.getCharactersByUrl(url)
 
     override suspend fun getPlanetById(id: Int) =
         Common.apiServices.getPlanetById(id)

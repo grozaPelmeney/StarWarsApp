@@ -1,7 +1,12 @@
 package com.example.starwarsapp.db.character
 
+import com.google.gson.annotations.SerializedName
+
 data class Character(
+    @SerializedName("name")
     val name: String,
-    val birth_year: String,
-    val gender: String,
+    @SerializedName("birth_year")
+    val birthYear: String,
+    @SerializedName("gender")
+    val sex: String,
 )
