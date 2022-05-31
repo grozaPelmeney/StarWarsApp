@@ -103,12 +103,15 @@ class FilmsFragment : Fragment(R.layout.films_fragment) {
         }
         adapter.setOnClickListener(object : FilmsRvAdapter.OnItemClickListener {
             override fun onItemClick(position: Int) {
-                val charactersList = adapter.getFilmByPosition(position).characters
-                val filmUrl = adapter.getFilmByPosition(position).url
+                val film = adapter.getFilmByPosition(position)
+                val charactersList = film.characters
+                val filmUrl = film.url
+                val filmTitle = film.title
                 val action =
                     FilmsFragmentDirections.actionFilmsFragmentToCharacterFragment(
                         charactersList.toTypedArray(),
-                        filmUrl)
+                        filmUrl,
+                        filmTitle)
                 findNavController().navigate(action)
             }
         })

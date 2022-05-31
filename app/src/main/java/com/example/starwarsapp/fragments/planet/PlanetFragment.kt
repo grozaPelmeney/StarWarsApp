@@ -86,11 +86,11 @@ class PlanetFragment : Fragment(R.layout.planet_fragment) {
         planet ?: return
         with(binding) {
             planetNameTv.text = planet.name
-            gravityTv.text = "gravity: ${planet.gravity}"
-            climateTv.text = "climate: ${planet.climate}"
-            populationTv.text = "population: ${planet.population}"
-            terrainTv.text = "terrain: ${planet.terrain}"
-            diameterTv.text = "diameter: ${planet.diameter}"
+            gravityTv.text = String.format(getString(R.string.planet_gravity), planet.gravity)
+            climateTv.text = String.format(getString(R.string.planet_climate), planet.climate)
+            populationTv.text = String.format(getString(R.string.planet_population), planet.population)
+            terrainTv.text = String.format(getString(R.string.planet_terrain), planet.terrain)
+            diameterTv.text = String.format(getString(R.string.planet_diameter), planet.diameter)
         }
     }
 }

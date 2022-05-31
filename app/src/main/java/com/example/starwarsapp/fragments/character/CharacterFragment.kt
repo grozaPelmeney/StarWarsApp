@@ -2,11 +2,11 @@ package com.example.starwarsapp.fragments.character
 
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuInflater
-import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,8 +16,6 @@ import com.example.starwarsapp.databinding.CharacterFragmentBinding
 import com.example.starwarsapp.db.character.Character
 import com.example.starwarsapp.db.character.CharacterDatabase
 import com.example.starwarsapp.db.character.CharacterDbRepository
-import com.example.starwarsapp.db.film.FilmDatabase
-import com.example.starwarsapp.db.film.FilmDbRepository
 import com.example.starwarsapp.utils.Status
 
 
@@ -27,12 +25,6 @@ class CharacterFragment : Fragment(R.layout.character_fragment) {
     private val dbRepository by lazy { CharacterDbRepository(CharacterDatabase.getDatabase(requireContext()).characterDao()) }
     private val viewModel by lazy { CharacterViewModel(dbRepository) }
 
-    override fun onPrepareOptionsMenu(menu: Menu) {
-        super.onPrepareOptionsMenu(menu)
-        val item = menu.findItem(R.id.search_btn)
-        item.isVisible = false
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -41,9 +33,18 @@ class CharacterFragment : Fragment(R.layout.character_fragment) {
         val args: CharacterFragmentArgs by navArgs()
         val characterUrls = args.charactersInFilm.toList()
         val filmUrl = args.filmUrl
+        val filmTitle = args.filmTitle
+
+        (activity as AppCompatActivity).supportActionBar?.title = filmTitle
 
         setupRv()
         getFilms(filmUrl, characterUrls)
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        val item = menu.findItem(R.id.search_btn)
+        item.isVisible = false
     }
 
     private fun getFilms(filmUrl: String, characterUrls: List<String>) {
@@ -111,7 +112,6 @@ class CharacterFragment : Fragment(R.layout.character_fragment) {
         characters ?: return
         with(binding) {
             (charactersRv.adapter as CharacterRvAdapter).updateList(characters)
-            charactersRv.adapter?.notifyDataSetChanged()
         }
     }
 }

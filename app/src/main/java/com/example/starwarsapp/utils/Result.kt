@@ -1,23 +1,23 @@
 package com.example.starwarsapp.utils
 
-data class Resource<out T> (val status: Status, val data: T?, val message: String?) {
+data class Result<out T> (val status: Status, val data: T?, val message: String?) {
     companion object {
-        fun <T> success(data: T): Resource<T> =
-            Resource(
+        fun <T> success(data: T): Result<T> =
+            Result(
                 status = Status.SUCCESS,
                 data = data,
                 message = null
             )
 
-        fun <T> loading(data: T): Resource<T> =
-            Resource(
+        fun <T> loading(data: T): Result<T> =
+            Result(
                 status = Status.LOADING,
                 data = data,
                 message = null
             )
 
-        fun <T> error(data: T, message: String): Resource<T> =
-            Resource(
+        fun <T> error(data: T, message: String): Result<T> =
+            Result(
                 status = Status.ERROR,
                 data = data,
                 message = message

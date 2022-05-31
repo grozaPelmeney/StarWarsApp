@@ -28,10 +28,16 @@
         <action
             android:id="@+id/action_characterFragment_to_planetFragment"
             app:destination="@id/planetFragment" />
+        <argument
+            android:name="filmUrl"
+            app:argType="string" />
+        <argument
+            android:name="filmTitle"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/planetFragment"
-        android:name="com.example.starwarsapp.fragments.PlanetFragment"
+        android:name="com.example.starwarsapp.fragments.planet.PlanetFragment"
         android:label="planet_fragment"
         tools:layout="@layout/planet_fragment" >
         <action

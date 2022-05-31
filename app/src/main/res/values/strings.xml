@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">StarWarsApp</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="action_search">Поиск</string>
+
+    <string name="planet_gravity">gravity: %s</string>
+    <string name="planet_climate">climate: %s</string>
+    <string name="planet_population">population: %s</string>
+    <string name="planet_diameter">diameter: %s</string>
+    <string name="planet_terrain">terrain: %s</string>
+</resources>
