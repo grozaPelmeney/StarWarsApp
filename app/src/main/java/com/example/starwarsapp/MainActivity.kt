@@ -2,6 +2,8 @@ package com.example.starwarsapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import androidx.appcompat.widget.SearchView
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -16,5 +18,19 @@ class MainActivity : AppCompatActivity() {
             .findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
         val navController = navHostFragment.navController
         setupActionBarWithNavController(navController)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
+        val navController = navHostFragment.navController
+
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_item, menu)
+        val searchView = menu?.findItem(R.id.search_btn)?.actionView as SearchView
+        return super.onCreateOptionsMenu(menu)
     }
 }

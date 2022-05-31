@@ -10,15 +10,18 @@ object RetrofitBuilder {
 
     fun getRetrofit(baseUrl: String) : Retrofit {
         if(retrofit == null) {
-            val client = OkHttpClient.Builder()
-                .connectTimeout(100, TimeUnit.SECONDS)
-                .readTimeout(100,TimeUnit.SECONDS).build()
             retrofit = Retrofit.Builder()
                 .baseUrl(baseUrl)
-                .client(client)
+            //    .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         }
         return retrofit!!
     }
 }
+
+/*
+//            val client = OkHttpClient.Builder()
+//                .connectTimeout(100, TimeUnit.SECONDS)
+//                .readTimeout(100,TimeUnit.SECONDS).build()
+ */

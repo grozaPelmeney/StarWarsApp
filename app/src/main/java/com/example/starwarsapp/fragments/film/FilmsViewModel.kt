@@ -4,20 +4,42 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.example.starwarsapp.data.retrofit.ApiRepository
-import com.example.starwarsapp.data.retrofit.Common
-import com.example.starwarsapp.utils.Resource
+import com.example.starwarsapp.db.film.Film
+import com.example.starwarsapp.db.film.FilmDbRepository
+import com.example.starwarsapp.utils.Result
 import kotlinx.coroutines.Dispatchers
 
-class FilmsViewModel : ViewModel() {
-   // private val filmRepository = FilmRepository()
+class FilmsViewModel(private val dbRepository: FilmDbRepository) : ViewModel() {
     private val apiRepository by lazy { ApiRepository() }
 
-    fun getFilms() = liveData(Dispatchers.IO) {
-        emit(Resource.loading(data = null))
+    fun getFilmsFromDb() = liveData(Dispatchers.IO) {
+        emit(Result.loading(data = null))
         try {
-            emit(Resource.success(data = apiRepository.getFilms()))
+            if (!dbRepository.containsFilms()) {
+                throw Exception("")
+            }
+            emit(Result.success(data = dbRepository.getFilms()))
         } catch (e: Exception) {
-            emit(Resource.error(data = null, message = "Не удалось загрузить данные!"))
+            emit(Result.error(data = null, message = "Нет сохраненных данных"))
         }
+    }
+
+    fun getFilmsFromApi() = liveData(Dispatchers.IO) {
+        emit(Result.loading(data = null))
+        try {
+            val filmsList = apiRepository.getFilms()
+            emit(Result.success(data = filmsList.films))
+            saveFilmsToDb(filmsList.films)
+
+        } catch (e: Exception) {
+            emit(Result.error(data = null, message = "Не удалось загрузить данные!"))
+        }
+    }
+
+    private suspend fun saveFilmsToDb(films: List<Film>) {
+        films.forEach { film ->
+            dbRepository.addFilm(film)
+        }
+        Log.e("AA", "сохранено")
     }
 }
