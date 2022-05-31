@@ -17,13 +17,16 @@ interface ApiServices {
     suspend fun getFilmById(@Path("id") id: Int) : Film
 
     @GET("people")
-    suspend fun getCharacters() : Characters
+    suspend fun getCharacters() : ArrayList<Characters>
 
     @GET("people/{id}")
-    suspend fun getCharactersById(@Path("id") id: Int) : Character
+    suspend fun getCharacterById(@Path("id") id: Int) : Character
 
     @GET()
-    suspend fun getCharactersByUrl(@Url url: String) : Character
+    suspend fun getCharacterByUrl(@Url url: String) : Character
+
+    @GET()
+    suspend fun getPlanetByUrl(@Url url: String) : Planet
 
     @GET("planet/{id}")
     suspend fun getPlanetById(@Path("id") id: Int) : Planet

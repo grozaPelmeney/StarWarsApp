@@ -7,7 +7,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.starwarsapp.R
 import com.example.starwarsapp.db.character.Character
-import com.example.starwarsapp.db.film.Film
 
 class CharacterRvAdapter : RecyclerView.Adapter<CharacterRvAdapter.ViewHolder>() {
     interface OnItemClickListener {
@@ -24,6 +23,9 @@ class CharacterRvAdapter : RecyclerView.Adapter<CharacterRvAdapter.ViewHolder>()
     fun updateList(characters: List<Character>) {
         this.characters = characters
     }
+
+    fun getPlanetUrlByCharacterPosition(position: Int) =
+        characters[position].planetUrl
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.character_item, parent, false)

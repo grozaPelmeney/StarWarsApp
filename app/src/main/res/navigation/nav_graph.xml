@@ -25,5 +25,20 @@
         <argument
             android:name="charactersInFilm"
             app:argType="string[]" />
+        <action
+            android:id="@+id/action_characterFragment_to_planetFragment"
+            app:destination="@id/planetFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/planetFragment"
+        android:name="com.example.starwarsapp.fragments.PlanetFragment"
+        android:label="planet_fragment"
+        tools:layout="@layout/planet_fragment" >
+        <action
+            android:id="@+id/action_planetFragment_to_characterFragment"
+            app:destination="@id/characterFragment" />
+        <argument
+            android:name="characterPlanetUrl"
+            app:argType="string" />
     </fragment>
 </navigation>
